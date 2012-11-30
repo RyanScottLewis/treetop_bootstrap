@@ -1,0 +1,37 @@
+require 'treetop_bootstrap/node'
+require 'treetop_bootstrap/helpers'
+
+module TreetopBootstrap
+  grammar Language
+    include Helpers
+    
+    rule body
+      (hello_keyword / float / integer / string / space )* <Body>
+    end
+    
+    rule integer
+      ('+' / '-')? digit+ (![\.e]) <IntegerLiteral>
+    end
+    
+    rule float
+      ('+' / '-')? digit+ ([\.e] digit+) <FloatLiteral>
+    end
+    
+    rule double_quoted_string
+      double_quote ('\\' double_quote / !double_quote .)* double_quote <StringLiteral>
+    end
+    
+    rule single_quoted_string
+      single_quote ('\\' single_quote / !single_quote .)* single_quote <StringLiteral>
+    end
+    
+    rule string
+      single_quoted_string / double_quoted_string
+    end
+    
+    rule hello_keyword
+      'hello' space ( string / integer / float ) <HelloKeyword>
+    end
+    
+  end
+end

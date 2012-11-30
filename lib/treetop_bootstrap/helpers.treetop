@@ -1,0 +1,51 @@
+module TreetopBootstrap
+  
+  grammar Helpers
+    
+    rule single_quote
+      "'"
+    end
+    
+    rule double_quote
+      '"'
+    end
+    
+    rule quote
+      single_quote / double_quote
+    end
+    
+    rule hash
+      '#'
+    end
+    
+    rule reserved_characters
+      quote
+    end
+    
+    rule digit
+      [0-9]
+    end
+    
+    rule lowercase_letter
+      [a-z]
+    end
+    
+    rule uppercase_letter
+      [A-Z]
+    end
+    
+    rule letter
+      lowercase_letter / uppercase_letter
+    end
+    
+    rule letter_or_digit
+      letter / digit
+    end
+    
+    rule space
+      [\s]+
+    end
+    
+  end
+  
+end
